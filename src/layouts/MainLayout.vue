@@ -26,7 +26,6 @@
           :key="link.title"
           v-bind="link"
         />
-        <EssentialLink title="title" to="/" />
       </q-list>
     </q-drawer>
 
@@ -42,16 +41,14 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: "Update Progress",
+    title: "Home",
     caption: "Update Progress",
-    icon: "progress",
-    link: "",
+    link: "/",
   },
   {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
+    title: "Stats",
+    caption: "See Stats",
+    link: "/stats",
   },
 ];
 
