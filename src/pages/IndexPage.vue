@@ -8,10 +8,16 @@
 
     <img src="~assets/habit-track.gif" alt="this slowpoke moves" width="250" />
     <div class="q-pa-md">
-      <q-checkbox v-model="val" /> Today I run at least 2 miles
+      <div v-for="(item, key) in fieldsConfig" :key="item.id">
+        <!-- {{ parentMessage }} - {{ index }} - {{ item.message }} -->
+
+        {{key}}
+      </div>
+      <!-- <q-checkbox v-model="val" />  -->
       <div class="q-gutter-md row items-start">
         <q-date v-model="date" minimal />
       </div>
+
       <div class="q-gutter-md" style="max-width: 500">
         <q-input
           borderless
