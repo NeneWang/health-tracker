@@ -46,8 +46,8 @@ const linksList = [
     link: "/",
   },
   {
-    title: "Stats",
-    caption: "See Stats",
+    title: "Profile",
+    caption: "View my stats",
     link: "/stats",
   },
 ];
