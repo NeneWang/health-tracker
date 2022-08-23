@@ -11,7 +11,14 @@
       <div v-for="(item, key) in fieldsConfig" :key="item.id">
         <!-- {{ parentMessage }} - {{ index }} - {{ item.message }} -->
 
-        {{key}}
+        {{ key }}
+
+        <div v-if="item.type == 'CHECKBOX'">
+          <li v-for="listItem in item.list" :key="listItem" >
+            <q-checkbox v-model="val" /> {{listItem}}
+          </li>
+        </div>
+        
       </div>
       <!-- <q-checkbox v-model="val" />  -->
       <div class="q-gutter-md row items-start">
