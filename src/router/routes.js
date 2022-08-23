@@ -4,11 +4,11 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: '/stats', componment: () => import('pages/Stats.vue') },
-      { path: '/modify', componment: () => import('pages/Modify.vue') },
-      { path: '/profile', componment: () => import('pages/Profile.vue') },
-      { path: '/social', componment: () => import('pages/Social.vue') },
+      { path: '/', component: () => import('pages/IndexPage.vue') },
+      { path: '/profile', component: () => import('pages/Profile.vue') },
+      { path: '/stats', component: () => import('pages/Stats.vue') },
+      { path: '/modify', component: () => import('pages/Modify.vue') },
+      { path: '/social', component: () => import('pages/Social.vue') },
     ]
   },
 
