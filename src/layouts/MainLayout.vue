@@ -19,7 +19,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Keep Improving! </q-item-label>
+        <q-item-label header> Stick to your habits! </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"
