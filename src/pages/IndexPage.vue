@@ -39,5 +39,41 @@ export default defineComponent({
       date: ref(utc),
     };
   },
+  data() {
+    return {
+      fieldsConfig: {
+        "Daily Habits": {
+          type: "TEXT",
+          value: "Wake up and trainning",
+        },
+        "DAY - What day is this report for?": { type: "DATETIME" },
+        "BLOCKS - How much Time blocks were you able to complete?": {
+          type: "NUMBER",
+        },
+        "Systems Applied ✅": {
+          type: "CHECKBOX",
+          list: ["Trainning while doing algorithms", "Running on the mornings"],
+        },
+        "Vices 🙈": {
+          type: "CHECKBOX",
+          list: [
+            "Railed off from my Gaming Strategy",
+            "Slept on the Afternoon (Before Bed Time)",
+            "Hard Break",
+          ],
+        },
+        "Achievements 🏆": {
+          type: "CHECKBOX",
+          list: [
+            "1+ Algo/Problem/topic explained 🍃👨‍💼",
+            "Reading Done 📚",
+            "Workout routine gym 💪",
+            "5+features Github 🐱‍💻",
+            "2+ features on Personal Project 🐱‍👤👺",
+          ],
+        },
+      },
+    };
+  },
 });
 </script>
