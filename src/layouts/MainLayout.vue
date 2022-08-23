@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Health Tracker App </q-toolbar-title>
+        <q-toolbar-title> Wholesomehabit </q-toolbar-title>
 
         <q-btn flat color="primary" label="Flat" />
       </q-toolbar>
@@ -46,9 +46,19 @@ const linksList = [
     link: "/",
   },
   {
+    title: "Modify",
+    caption: "Modify the habits you want to create.",
+    link: "/modify",
+  },
+  {
     title: "Profile",
     caption: "View my stats",
-    link: "/stats",
+    link: "/profile",
+  },
+  {
+    title: "Social",
+    caption: "Share and view other's stack",
+    link: "/social",
   },
 ];
 
