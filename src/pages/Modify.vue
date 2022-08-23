@@ -4,12 +4,17 @@
       Modify Habits
       <q-input v-model="habitsSetting" filled type="textarea" />
       <vue-json-editor
-        v-model="habitsSetting"
-        mode="code"
+        v-model="json"
         :show-btns="true"
-        :expandedOnStart="true"
+        :mode="'code'"
+        lang="zh"
         @json-change="onJsonChange"
-      ></vue-json-editor>
+        @json-save="onJsonSave"
+        @has-error="onError"
+      >
+      </vue-json-editor>
+
+      <button type="button" @click="resetJson">reset</button>
     </div>
   </q-page>
 </template>
@@ -25,9 +30,7 @@ export default defineComponent({
   },
   data() {
     return {
-      json: {
-        msg: "demo of jsoneditor",
-      },
+      json: [{ name: "Dirk", age: 1234 }, { name: "Jason" }],
     };
   },
   setup() {
@@ -38,6 +41,15 @@ export default defineComponent({
   methods: {
     onJsonChange(value) {
       console.log("value:", value);
+    },
+    onJsonSave(value) {
+      console.log("value:", value);
+    },
+    onError(value) {
+      console.log("value:", value);
+    },
+    resetJson() {
+      this.json = [{ name: "Dirk", age: 1234 }, { name: "Jason" }];
     },
   },
 });
