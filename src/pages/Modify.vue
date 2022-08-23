@@ -12,6 +12,8 @@
         @json-save="onJsonSave"
         @has-error="onError"
       >
+
+      
       </vue-json-editor>
 
       <button type="button" @click="resetJson">reset</button>
