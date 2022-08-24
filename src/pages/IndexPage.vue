@@ -9,27 +9,35 @@
     <img src="~assets/habit-track.gif" alt="this slowpoke moves" width="250" />
     <div class="q-pa-md">
       <form action="">
-        <div v-for="(item, key) in fieldsConfig" :key="item.id">
+        <div
+          class="q-pb-md"
+          v-for="(item, key) in fieldsConfig"
+          :key="item.id"
+        >
           <!-- {{ parentMessage }} - {{ index }} - {{ item.message }} -->
+          <b>
+            {{ key }}
+          </b>
 
-          {{ key }}
+          <div v-if="item.type == 'TEXT'">
+              <p>{{item.value}}</p>
+          </div>
+
+          <div v-if="item.type == 'DATETIME'">
+            <div class="q-gutter-md row items-start">
+              <q-date v-model="date" minimal />
+            </div>
+          </div>
 
           <div v-if="item.type == 'CHECKBOX'">
             <li v-for="listItem in item.list" :key="listItem">
-              <input
-                type="checkbox"
-                id="vehicle1"
-                name="vehicle1"
-                :value="listItem"
-              />{{ listItem }}
+              <input type="checkbox" :id="listItem" :value="listItem" />
+              <label :for="listItem"> {{ listItem }}</label>
             </li>
           </div>
         </div>
       </form>
       <!-- <q-checkbox v-model="val" />  -->
-      <div class="q-gutter-md row items-start">
-        <q-date v-model="date" minimal />
-      </div>
     </div>
   </q-page>
 </template>
@@ -40,9 +48,9 @@ import { ref } from "vue";
 var utc = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 // document.write(utc);
 var fieldsConfig = {
-  "Daily Habits": {
+  "Daily Plan": {
     type: "TEXT",
-    value: "Wake up and trainning",
+    value: "5am Wake up and Train",
   },
   "DAY - What day is this report for?": { type: "DATETIME" },
   "BLOCKS - How much Time blocks were you able to complete?": {
