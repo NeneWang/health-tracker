@@ -8,17 +8,24 @@
 
     <img src="~assets/habit-track.gif" alt="this slowpoke moves" width="250" />
     <div class="q-pa-md">
-      <div v-for="(item, key) in fieldsConfig" :key="item.id">
-        <!-- {{ parentMessage }} - {{ index }} - {{ item.message }} -->
+      <form action="">
+        <div v-for="(item, key) in fieldsConfig" :key="item.id">
+          <!-- {{ parentMessage }} - {{ index }} - {{ item.message }} -->
 
-        {{ key }}
+          {{ key }}
 
-        <div v-if="item.type == 'CHECKBOX'">
-          <li v-for="listItem in item.list" :key="listItem">
-            <q-checkbox v-model="val" /> {{ listItem }}
-          </li>
+          <div v-if="item.type == 'CHECKBOX'">
+            <li v-for="listItem in item.list" :key="listItem">
+              <input
+                type="checkbox"
+                id="vehicle1"
+                name="vehicle1"
+                :value="listItem"
+              />{{ listItem }}
+            </li>
+          </div>
         </div>
-      </div>
+      </form>
       <!-- <q-checkbox v-model="val" />  -->
       <div class="q-gutter-md row items-start">
         <q-date v-model="date" minimal />
@@ -79,7 +86,9 @@ export default defineComponent({
     };
   },
   data() {
-    return {};
+    return {
+      fieldsConfig: { ...fieldsConfig },
+    };
   },
 });
 </script>
