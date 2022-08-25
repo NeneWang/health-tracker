@@ -15,9 +15,19 @@
             {{ key }}
           </b>
 
-          <div v-if="item.type == 'TEXT'">
+          <div class="" v-if="item.type == 'TEXT'">
             <p>{{ item.value }}</p>
           </div>
+
+          <dir class="text-left" v-if="item.type == 'NUMBER'">
+            <q-input
+              type="number"
+              filled
+              @change="printData(item.id)"
+              v-model="$data[item.id]"
+              :label="item.value"
+            />
+          </dir>
 
           <div v-if="item.type == 'DATETIME'">
             <div class="q-gutter-md row items-start">
@@ -31,8 +41,8 @@
                 type="checkbox"
                 v-model="checkedList"
                 :val="listItem"
+                :label="listItem"
               />
-              <label :for="listItem"> {{ listItem }}</label>
             </li>
             <!-- <div class="q-px-sm">
               The model data: <strong>{{ checkedList }}</strong>
@@ -41,13 +51,15 @@
         </div>
       </form>
 
-      <div class="q-px-sm">
-        Other Data <strong>{{date}}</strong>
-        The model data: <strong>{{ checkedList }}</strong>
-      </div>
       <!-- <q-checkbox v-model="val" />  -->
     </div>
   </q-page>
+  <div class="q-px-sm">
+    <div class="text-weight-bolder">Log:</div>
+    Date <strong>{{ date }}</strong> The model data:
+    <strong>{{ checkedList }}</strong>
+    Text {{ inputText }}
+  </div>
 </template>
 
 <script>
@@ -63,6 +75,13 @@ var fieldsConfig = {
   "DAY - What day is this report for?": { type: "DATETIME" },
   "BLOCKS - How much Time blocks were you able to complete?": {
     type: "NUMBER",
+    value: "Enter the block count",
+    id:"2"
+  },
+  "How many miles?": {
+    type: "NUMBER",
+    value: "Enter miles ran",
+    id:"1"
   },
   "Systems Applied ✅": {
     type: "CHECKBOX",
@@ -88,6 +107,19 @@ var fieldsConfig = {
   },
 };
 
+// Creat proper ids and also create the refs for the variables
+const inputSetupList = Object.keys(fieldsConfig).reduce(function (filtered, key){
+  // console.log(fieldsConfig[key].id)\
+  fieldsConfig[key]["id"]=key.replace(/[^a-z0-9]/gi, '');
+  if(fieldsConfig[key].type == "NUMBER"){
+    filtered[fieldsConfig[key]["id"]] = ref()
+  }
+
+  return filtered
+}, {})
+
+console.log(inputSetupList, fieldsConfig)
+
 const setupConfig = {
   val: ref(false),
   model: ref(2),
@@ -98,6 +130,7 @@ export default defineComponent({
   setup() {
     return {
       ...setupConfig,
+      ...inputSetupList,
       date: ref(utc),
       checkedList: ref([]),
     };
@@ -107,5 +140,10 @@ export default defineComponent({
       fieldsConfig: { ...fieldsConfig },
     };
   },
+  methods: {
+      printData: function(data){
+        console.log(this.$data[data])
+      }
+  }
 });
 </script>
