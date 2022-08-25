@@ -9,18 +9,14 @@
     <img src="~assets/habit-track.gif" alt="this slowpoke moves" width="250" />
     <div class="q-pa-md">
       <form action="">
-        <div
-          class="q-pb-md"
-          v-for="(item, key) in fieldsConfig"
-          :key="item.id"
-        >
+        <div class="q-pb-md" v-for="(item, key) in fieldsConfig" :key="item.id">
           <!-- {{ parentMessage }} - {{ index }} - {{ item.message }} -->
           <b>
             {{ key }}
           </b>
 
           <div v-if="item.type == 'TEXT'">
-              <p>{{item.value}}</p>
+            <p>{{ item.value }}</p>
           </div>
 
           <div v-if="item.type == 'DATETIME'">
@@ -31,12 +27,24 @@
 
           <div v-if="item.type == 'CHECKBOX'">
             <li v-for="listItem in item.list" :key="listItem">
-              <input type="checkbox" :id="listItem" :value="listItem" />
+              <q-checkbox
+                type="checkbox"
+                v-model="checkedList"
+                :val="listItem"
+              />
               <label :for="listItem"> {{ listItem }}</label>
             </li>
+            <!-- <div class="q-px-sm">
+              The model data: <strong>{{ checkedList }}</strong>
+            </div> -->
           </div>
         </div>
       </form>
+
+      <div class="q-px-sm">
+        Other Data <strong>{{date}}</strong>
+        The model data: <strong>{{ checkedList }}</strong>
+      </div>
       <!-- <q-checkbox v-model="val" />  -->
     </div>
   </q-page>
@@ -91,6 +99,7 @@ export default defineComponent({
     return {
       ...setupConfig,
       date: ref(utc),
+      checkedList: ref([]),
     };
   },
   data() {
