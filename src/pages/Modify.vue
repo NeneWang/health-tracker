@@ -3,15 +3,18 @@
     <div>
       Modify Habits
       <!-- <q-input v-model="habitsSetting" filled type="textarea" /> -->
+      
+      <!-- <button type="button" @click="resetJson">reset</button> -->
+      <button type="button" @click="saveData">Save</button>
       <vue-json-editor
         v-model="json"
         :mode="'code'"
         :value="value"
+        style="min-height: 500px"
         @json-change="onJsonChange"
       >
       </vue-json-editor>
 
-      <button type="button" @click="resetJson">reset</button>
     </div>
   </q-page>
 </template>
@@ -68,3 +71,14 @@ export default {
   },
 };
 </script>
+
+<style>
+
+  .ace_editor{
+    height: 60em !important;
+  }
+  /* ace_gutter-layer ace_folding-enabled */
+  .ace_layer{
+    height: 60em!important;
+  }
+</style>
