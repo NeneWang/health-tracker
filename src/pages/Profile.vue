@@ -3,9 +3,13 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, defineAsyncComponent  } from "vue";
+import VueApexCharts from "vue3-apexcharts";
+
+// const app = createApp(App);
 
 export default defineComponent({
   name: "profilePage",
+  
 });
 </script>
