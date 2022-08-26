@@ -50,7 +50,9 @@
           </div>
         </div>
       </form>
-
+      <button @click="postData" >
+        Upload
+      </button>
       <!-- <q-checkbox v-model="val" />  -->
     </div>
   </q-page>
@@ -143,6 +145,9 @@ export default defineComponent({
   methods: {
       printData: function(data){
         console.log(this.$data[data])
+      },
+      postData: function(data){
+        console.log("this post", Object.keys(inputSetupList))
       }
   }
 });
