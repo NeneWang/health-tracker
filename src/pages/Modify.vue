@@ -74,19 +74,17 @@ export default {
     uploadSettings() {
       const uploadObject = {
         user_id: 1,
-        data: this.settings,
+        data: JSON.stringify(this.settings),
       };
 
       console.log("POSTING", JSON.stringify(uploadObject));
 
       const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(uploadObject),
+        method: "PUT"
+        // params: uploadObject,
       };
-      fetch("http://127.0.0.1:5000/settings", requestOptions)
+      fetch(`http://127.0.0.1:5000/settings?user_id=1&data=${uploadObject.data}`, requestOptions)
         .then((response) => response.json())
-        .then((data) => (this.postId = data.id));
     },
   },
 };

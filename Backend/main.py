@@ -4,10 +4,11 @@ from flask import Flask
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
 
-from flask.ext.cors import CORS, cross_origin
 
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
@@ -70,7 +71,7 @@ class User(Resource):
     #     user_model = UserModel.query.filter_by(user_id=args['user_id']).first()
     #
 
-@cross_origin()
+
 def login_user(args):
     user_model = UserModel.query.filter_by(user_id=args['user_id']).first()
     if not user_model:
@@ -79,7 +80,7 @@ def login_user(args):
         db.session.commit()
     return authenticate_user(args, user_model)
 
-@cross_origin()
+
 def authenticate_user(args, user_model):
     has_correct_username = args['name'] == user_model.name
     has_correct_email = args['email'] == user_model.email
@@ -143,7 +144,7 @@ setting_model_fields = {
 class Settings(Resource):
     # getSettings(user_id)
     @marshal_with(setting_model_fields)
-    @cross_origin()
+    
     def get(self):
         args = settings_get_parser.parse_args()
         settings_model = SettingsModel.query.filter_by(user_id=args['user_id']).first()
@@ -153,7 +154,7 @@ class Settings(Resource):
 
     # updateSettings(user_id, data)
     @marshal_with(setting_model_fields)
-    @cross_origin()
+    
     def put(self):
         args = settings_put_parser.parse_args()
         setting_model = SettingsModel.query.filter_by(user_id=args['user_id']).first()
@@ -164,7 +165,7 @@ class Settings(Resource):
             db.session.commit()
         return {'message': 'updated'}
 
-    @cross_origin()
+    
     def post(self):
         args = settings_put_parser.parse_args()
         print(args)
