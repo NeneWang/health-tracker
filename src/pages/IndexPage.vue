@@ -145,6 +145,16 @@ export default defineComponent({
     };
   },
   computed() {},
+  beforeMount() {
+    console.log("before");
+    fetch(`http://127.0.0.1:5000/settings?user_id=1`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Received", JSON.parse(data.data));
+        this.fieldsConfig = JSON.parse(data.data);
+        // console.log(data);
+      });
+  },
   methods: {
     printData: function (data) {
       console.log(data, this.$data[data]);
@@ -160,10 +170,10 @@ export default defineComponent({
       };
 
       const examplePostBody = {
-        user_id: '1',
+        user_id: "1",
         date: this.date,
-        data: returnObject
-      }
+        data: returnObject,
+      };
 
       console.log("POST REQUEST", JSON.stringify(examplePostBody));
     },
