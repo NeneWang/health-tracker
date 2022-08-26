@@ -8,7 +8,7 @@
 
     <img src="~assets/habit-track.gif" alt="this slowpoke moves" width="250" />
     <div class="q-pa-md">
-      <form action="">
+      <form ref="form" @submit.prevent="postData">
         <div class="q-pb-md" v-for="(item, key) in fieldsConfig" :key="item.id">
           <!-- {{ parentMessage }} - {{ index }} - {{ item.message }} -->
           <b>
@@ -49,10 +49,8 @@
             </div> -->
           </div>
         </div>
+        <q-btn @click="postData"> Upload </q-btn>
       </form>
-      <button @click="postData" >
-        Upload
-      </button>
       <!-- <q-checkbox v-model="val" />  -->
     </div>
   </q-page>
@@ -78,12 +76,12 @@ var fieldsConfig = {
   "BLOCKS - How much Time blocks were you able to complete?": {
     type: "NUMBER",
     value: "Enter the block count",
-    id:"2"
+    id: "2",
   },
   "How many miles?": {
     type: "NUMBER",
     value: "Enter miles ran",
-    id:"1"
+    id: "1",
   },
   "Systems Applied ✅": {
     type: "CHECKBOX",
@@ -110,17 +108,21 @@ var fieldsConfig = {
 };
 
 // Creat proper ids and also create the refs for the variables
-const inputSetupList = Object.keys(fieldsConfig).reduce(function (filtered, key){
+const inputSetupList = Object.keys(fieldsConfig).reduce(function (
+  filtered,
+  key
+) {
   // console.log(fieldsConfig[key].id)\
-  fieldsConfig[key]["id"]=key.replace(/[^a-z0-9]/gi, '');
-  if(fieldsConfig[key].type == "NUMBER"){
-    filtered[fieldsConfig[key]["id"]] = ref()
+  fieldsConfig[key]["id"] = key.replace(/[^a-z0-9]/gi, "");
+  if (fieldsConfig[key].type == "NUMBER") {
+    filtered[fieldsConfig[key]["id"]] = ref();
   }
 
-  return filtered
-}, {})
+  return filtered;
+},
+{});
 
-console.log(inputSetupList, fieldsConfig)
+console.log(inputSetupList, fieldsConfig);
 
 const setupConfig = {
   val: ref(false),
@@ -142,13 +144,31 @@ export default defineComponent({
       fieldsConfig: { ...fieldsConfig },
     };
   },
+  computed() {},
   methods: {
-      printData: function(data){
-        console.log(this.$data[data])
-      },
-      postData: function(data){
-        console.log("this post", Object.keys(inputSetupList))
+    printData: function (data) {
+      console.log(data, this.$data[data]);
+    },
+    postData: function (data) {
+      const returnObject = {
+        checkedList: this.checkedList,
+        inputField: Object.keys(inputSetupList).map((inputKey) => {
+          const myobj = {};
+          myobj[inputKey] = this.$data[inputKey];
+          return myobj;
+        }),
+      };
+
+      const examplePostBody = {
+        user_id: '1',
+        date: this.date,
+        data: returnObject
       }
-  }
+
+      console.log("POST REQUEST", JSON.stringify(examplePostBody));
+    },
+  },
 });
+
+// .map( keyInput => this.$data[keyInput] )
 </script>
