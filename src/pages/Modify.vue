@@ -7,7 +7,7 @@
       <!-- <button type="button" @click="resetJson">reset</button> -->
       <br />
       <br />
-      <q-btn type="button" @click="uploadSettings">Save</q-btn>
+      <!-- <q-btn type="button" @click="uploadSettings">Save</q-btn> -->
 
       <br />
       <vue-json-editor
@@ -64,12 +64,23 @@ export default {
     };
   },
 
+  beforeMount() {
+    console.log("before");
+    fetch(`http://127.0.0.1:5000/settings?user_id=1`).then((response) => response.json())
+  .then((data) => {
+    console.log(JSON.parse(data.data))
+    this.settings = JSON.parse(data.data)
+    console.log(data)});
+
+  },
   components: {
     vueJsonEditor,
   },
   methods: {
     onJsonChange(value) {
+      // this.uploadSettingsSpecific(value)
       console.log("settings:", value);
+      this.uploadSettingsSpecific(value)
     },
     uploadSettings() {
       const uploadObject = {
@@ -80,11 +91,26 @@ export default {
       console.log("POSTING", JSON.stringify(uploadObject));
 
       const requestOptions = {
-        method: "PUT"
+        method: "PUT",
         // params: uploadObject,
       };
-      fetch(`http://127.0.0.1:5000/settings?user_id=1&data=${uploadObject.data}`, requestOptions)
-        .then((response) => response.json())
+      fetch(
+        `http://127.0.0.1:5000/settings?user_id=1&data=${uploadObject.data}`,
+        requestOptions
+      ).then((response) => response.json());
+    },
+    uploadSettingsSpecific(data) {
+
+      console.log("POSTING", data);
+
+      const requestOptions = {
+        method: "PUT",
+        // params: uploadObject,
+      };
+      fetch(
+        `http://127.0.0.1:5000/settings?user_id=1&data=${JSON.stringify(data)}`,
+        requestOptions
+      ).then((response) => response.json());
     },
   },
 };
