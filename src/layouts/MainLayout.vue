@@ -57,7 +57,7 @@ const linksList = [
   },
   {
     title: "Social",
-    caption: "Share and view other's stack",
+    caption: "Share and get inspired by viewing their progress",
     link: "/social",
   },
 ];

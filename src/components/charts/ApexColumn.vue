@@ -41,7 +41,7 @@ export default defineComponent({
       },
       series: [
         { name: "Productivity blocks completed", data: [5, 2, 3, 4, 5, 2, 2] },
-        { name: "Running", data: [3, 2, 0, 0, 5, 2, 7] },
+        { name: "Running", data: [3, 2, 0, 0, 3, 2, 7] },
       ],
     };
   },
