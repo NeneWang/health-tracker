@@ -15,6 +15,11 @@ quasar dev
 
 ```
 
+Or to run as pwa (App)
+```
+quasar dev -m pwa
+```
+
 ## BACKEND
 cd into Backend and
 install the depedencies
