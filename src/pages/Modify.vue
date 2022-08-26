@@ -3,18 +3,21 @@
     <div>
       Modify Habits
       <!-- <q-input v-model="habitsSetting" filled type="textarea" /> -->
-      
+
       <!-- <button type="button" @click="resetJson">reset</button> -->
-      <button type="button" @click="saveData">Save</button>
+      <br />
+      <br />
+      <q-btn type="button" @click="uploadSettings">Save</q-btn>
+
+      <br/>
       <vue-json-editor
         v-model="json"
         :mode="'code'"
-        :value="value"
+        :value="settings"
         style="min-height: 500px"
         @json-change="onJsonChange"
       >
       </vue-json-editor>
-
     </div>
   </q-page>
 </template>
@@ -26,7 +29,7 @@ import vueJsonEditor from "vue-json-editor";
 export default {
   data() {
     return {
-      value: {
+      settings: {
         "Daily Habits": {
           type: "TEXT",
           value: "Wake up and trainning",
@@ -66,19 +69,29 @@ export default {
   },
   methods: {
     onJsonChange(value) {
-      console.log("value:", value);
+      console.log("settings:", value);
     },
+    uploadSettings(){
+
+      const uploadObject = {
+        user_id:1,
+        data:this.settings
+      }
+
+      console.log("POSTING", JSON.stringify(uploadObject))
+
+
+    }
   },
 };
 </script>
 
 <style>
-
-  .ace_editor{
-    height: 60em !important;
-  }
-  /* ace_gutter-layer ace_folding-enabled */
-  .ace_layer{
-    height: 60em!important;
-  }
+.ace_editor {
+  height: 60em !important;
+}
+/* ace_gutter-layer ace_folding-enabled */
+.ace_layer {
+  height: 60em !important;
+}
 </style>
