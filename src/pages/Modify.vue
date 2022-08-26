@@ -9,7 +9,7 @@
       <br />
       <q-btn type="button" @click="uploadSettings">Save</q-btn>
 
-      <br/>
+      <br />
       <vue-json-editor
         v-model="json"
         :mode="'code'"
@@ -71,17 +71,23 @@ export default {
     onJsonChange(value) {
       console.log("settings:", value);
     },
-    uploadSettings(){
-
+    uploadSettings() {
       const uploadObject = {
-        user_id:1,
-        data:this.settings
-      }
+        user_id: 1,
+        data: this.settings,
+      };
 
-      console.log("POSTING", JSON.stringify(uploadObject))
+      console.log("POSTING", JSON.stringify(uploadObject));
 
-
-    }
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(uploadObject),
+      };
+      fetch("http://127.0.0.1:5000/settings", requestOptions)
+        .then((response) => response.json())
+        .then((data) => (this.postId = data.id));
+    },
   },
 };
 </script>
