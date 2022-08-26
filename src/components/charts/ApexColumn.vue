@@ -12,12 +12,12 @@ import { defineComponent } from "vue";
 import { getCssVar } from "quasar";
 
 export default defineComponent({
-  name: "ApexColumn",
+  name: "Habits Heatmap",
   data() {
     return {
       options: {
         title: {
-          text: "ApexColumn",
+          text: "Habits Heatmap",
           align: "left",
         },
         chart: {
@@ -29,7 +29,7 @@ export default defineComponent({
           getCssVar("negative"),
         ],
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
         },
         plotOptions: {
           bar: {
@@ -40,8 +40,8 @@ export default defineComponent({
         },
       },
       series: [
-        { name: "Monday", data: [30, 40, 45, 50, 49, 60, 70] },
-        { name: "Tuesday", data: [30, 40, 45, 50, 49, 60, 70] },
+        { name: "Productivity blocks completed", data: [5, 2, 3, 4, 5, 2, 2] },
+        { name: "Running", data: [3, 2, 0, 0, 5, 2, 7] },
       ],
     };
   },
