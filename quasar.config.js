@@ -141,9 +141,9 @@ module.exports = configure(function (ctx) {
       
 
       manifest: {
-        name: `Quasar App`,
-        short_name: `Quasar App`,
-        description: `App tha tracks healthy habits`,
+        name: `Wholesomehabit`,
+        short_name: `Wholesomehabit`,
+        description: `App to tracks healthy habits`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

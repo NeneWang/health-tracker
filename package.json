@@ -2,7 +2,7 @@
   "name": "health-tracker",
   "version": "0.0.1",
   "description": "App tha tracks healthy habits",
-  "productName": "Quasar App",
+  "productName": "Health Tracker",
   "author": "NelsonWang <wangnelson2@gmail.com>",
   "private": true,
   "scripts": {

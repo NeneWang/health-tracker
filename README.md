@@ -2,23 +2,31 @@
 
 App tha tracks healthy habits
 
+# FRONT END
+
 ## Install the dependencies
 ```bash
 yarn
-# or
-npm install
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
 quasar dev
+
 ```
 
+## BACKEND
+cd into Backend and
+install the depedencies
 
-### Build the app for production
-```bash
-quasar build
+```
+cd Backend
+pip install -r requirements.txt
+
 ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+Run the project
+
+```
+python main.py
+```
